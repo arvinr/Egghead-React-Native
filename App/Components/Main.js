@@ -1,7 +1,8 @@
 module.exports = Main;
 
 var React = require('react-native');
-var api = require('../Utils/api')
+var api = require('../Utils/api');
+var Dashboard = require('./Dashboard');
 var {
   View,
   Text,
@@ -97,7 +98,7 @@ class Main extends React.Component{
   render() {
     return(
       <View style={styles.mainContainer}>
-				<TextInput 
+				<TextInput
 					style={styles.searchInput}
 					value={this.state.username}
 					onChange={this.handleChange.bind(this)}
