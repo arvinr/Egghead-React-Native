@@ -5,7 +5,7 @@ var {
 	View,
 	Image,
 	StyleSheet
-}
+} = React;
 
 var styles = StyleSheet.create({
   container: {
@@ -49,4 +49,4 @@ Badge.propTypes = {
 	userInfo: React.PropTypes.object.isRequired
 };
 
-module.exports = Badge
+module.exports = Badge;
