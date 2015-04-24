@@ -82,15 +82,8 @@ class Main extends React.Component{
 				})
 			} else {
 				this.props.navigator.push({
-					title: res.name || "Select and Option",
-					component: Dashboard,
-					passProps: {userInfo: res}
+
 				});
-				this.setState({
-					isLoading: false,
-					error: false,
-					username: ''
-				})
 			}
 		});
 	}
