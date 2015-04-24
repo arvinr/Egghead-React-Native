@@ -96,6 +96,9 @@ class Main extends React.Component{
 		});
 	}
   render() {
+    var showErr = (
+      this.state.error ? <Text> {this.state.error} </Text> : <View></View>
+    );
     return(
       <View style={styles.mainContainer}>
 				<TextInput
@@ -109,6 +112,14 @@ class Main extends React.Component{
 					underlayColor="white">
 						<Text style={styles.butotnText}> SEARCH </Text>
 				</TouchableHighlight>
+
+        <ActivityIndicatorIOS
+          animating ={this.state.isLoading}
+          color="#111"
+          size="large">
+        </ActivityIndicatorIOS>
+
+        {showErr}
       </View>
     )
   }
