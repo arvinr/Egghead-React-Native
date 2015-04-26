@@ -1,6 +1,6 @@
 var React = require('react-native');
 var Badge = require('./Badge');
-var Separator = require('./Helpers/Separtor')
+var Separator = require('./Helpers/Separator');
 
 var {
 	ScrollView,
@@ -51,19 +51,19 @@ class Repositories extends React.Component{
 							underlayColor='transparent'>
 							<Text style={styles.name}>{repos[index].name}</Text>
 						</TouchableHighlight>
-						<Text style={styles.stars}> Stars: {repos.index.stargazers_count} </Text>
+						<Text style={styles.stars}> Stars: {repos[index].stargazers_count} </Text>
 						{desc}
 					</View>
 					<Separator />
 				</View>
 			)
 		});
-		return {
+		return (
 			<ScrollView style={styles.container}>
 				<Badge userInfo={this.props.userInfo} />
 				{list}
 			</ScrollView>
-		}
+		)
 	}
 };
 
