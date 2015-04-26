@@ -1,7 +1,8 @@
 var React = require('react-native');
 var Profile = require('./Profile');
-var api = require('../Utils/api.js');
 var Repositories = require('./Repositories.js');
+var Notes = require('./Notes.js');
+var api = require('../Utils/api.js');
 
 var {
 	Text,
@@ -67,7 +68,18 @@ class Dashboard extends React.Component{
 		});
 	}
 	goToNotes() {
-		console.log('Going to Notes Page');
+		api.getNotes(this.props.userInfo.login)
+		.then((res) => {
+			res = res || {};
+			this.props.navigator.push({
+				component: Notes,
+				title: 'Notes',
+				passProps: {
+					notes: res,
+					userInfo: this.props.userInfo
+				}
+			})
+		});
 	}
 	render(){
 		return(

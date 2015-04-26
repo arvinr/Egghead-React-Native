@@ -1,4 +1,4 @@
-var react = require('react-native');
+var React = require('react-native');
 var api = require('../Utils/api');
 var Separator = require('./Helpers/Separator');
 var Badge = require('./Badge');
@@ -48,14 +48,12 @@ var styles = StyleSheet.create({
 
 class Notes extends React.Component{
 	constructor(props){
-		super(props)
+		super(props);
 		this.ds = new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2});
 		this.state = {
-			this.state = {
-				dataSource: this.ds.cloneWithRows(this.props.notes),
-				note: '',
-				error: ''
-			}
+			dataSource: this.ds.cloneWithRows(this.props.notes),
+			note: '',
+			error: ''
 		}
 	}
 	handleChange(e){
@@ -67,13 +65,13 @@ class Notes extends React.Component{
 		var note = this.state.note;
 		this.setState({
 			note: ''
-		})
+		});
 		api.addNote(this.props.userInfo.login, note)
 			.then((data) => {
 				api.getNotes(this.props.userInfo.login)
 				.then((data) => {
 					this.setState({
-						dataSource: this.ds.cloneWithRows(data);
+						dataSource: this.ds.cloneWithRows(data)
 					})
 				})
 			}).catch((err) => {
@@ -92,28 +90,32 @@ class Notes extends React.Component{
 		)
 	}
 	footer(){
-		<View style={styles.footerContainer}>
-			<TextInput
-				style={styles.searchInput}
-				value={this.state.note}
-				onChange={this.handleChange.bind(this)}
-				placeHolder="New Note" />
-				<TouchableHighlight
-					style={styles.button}
-					onPress={this.handleSubmit.bind(this)}
-					underlayColor: "#88D4F5">
-					<Text style={styles.buttonText}> Submit </Text>
-				</TouchableHighlight>
-		</View>
+    return (
+    	<View style={styles.footerContainer}>
+    		<TextInput
+    			style={styles.searchInput}
+    			value={this.state.note}
+    			onChange={this.handleChange.bind(this)}
+    			placeholder="New Note" />
+    			<TouchableHighlight
+    				style={styles.button}
+    				onPress={this.handleSubmit.bind(this)}
+    				underlayColor="#88D4F5">
+    				<Text style={styles.buttonText}> Submit </Text>
+    			</TouchableHighlight>
+    	</View>
+    )
 	}
 	render() {
-		<View style={styles.container}>
-			<ListView 
-				dataSource={this.state.dataSource}
-				renderRow={this.renderRow}
-				renderHeader={() => <Badge userInfo={this.props.userInfo}/>} />
-			{this.footer()}
-		</View>
+		return(
+			<View style={styles.container}>
+				<ListView
+					dataSource={this.state.dataSource}
+					renderRow={this.renderRow}
+					renderHeader={() => <Badge userInfo={this.props.userInfo}/>} />
+				{this.footer()}
+			</View>
+		)
 	}
 };
 
